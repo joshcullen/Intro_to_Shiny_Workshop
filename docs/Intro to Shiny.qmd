@@ -1,0 +1,194 @@
+---
+format:
+  revealjs:
+    theme: [default, style.scss]
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    embed-resources: true
+    history: false
+    code-fold: false
+    code-tools: true
+    code-overflow: wrap
+    view-distance: 10
+    margin: 0.2
+    code-annotations: hover
+    logo: https://communications.ucsc.edu/wp-content/uploads/2021/04/2021-Logo-Do-3.jpg
+    footer: <img src=https://www.fisheries.noaa.gov/themes/custom/noaa_components/images/NOAA_FISHERIES_logoH.png>
+execute: 
+  echo: true
+  messages: false
+server: shiny
+---
+
+## {.center}
+
+<h1 class="text-indigo-pink">Intro to Shiny<h1>
+
+<h3>Learn how to make your own interactive web apps in R</h3>
+
+::: {style="margin-top:50px"}
+### Josh Cullen {.text-orange-gold}
+
+July 25, 2024
+:::
+
+
+## What is Shiny?
+
+[**Shiny**]{style="color: #0044ffa3"} is software for web app development that mitigates the need for knowledge of typical programming languages (e.g., JavaScript, HTML, and CSS).
+
+::: incremental
+- All you need to know is how to code in [R](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html) (or now [Python](https://shiny.posit.co/py/)!) to develop and deploy a web application
+- These web applications are often run: 
+  1. locally
+  2. online
+  3. as part of an R package
+
+:::
+
+## Why Shiny?
+
+There are a wide number of reasons why [**you**]{.underline} may be interested in creating a web app with Shiny:
+
+::: incremental
+1. Data exploration
+2. Data collection
+3. Sharing results
+4. Decision support
+:::
+
+
+## Why Shiny?
+
+Additionally, web apps are a good solution for many projects since they are:
+
+::: incremental
+1. Free at the point of use
+2. Cross-platform
+3. Easily accessible to many people without software installation or knowledge of R
+:::
+
+
+## How Shiny?
+
+Like all web apps, Shiny can be broken down into its two major components:
+
+::: columns
+::: {.column width="50%"}
+1. User Interface (UI or front-end)
+2. Server (or back-end)
+
+:::
+
+::: {.column width="50%"}
+![](https://psyr.djnavarro.net/img_shiny/architecture.png)
+:::
+:::
+
+
+## How Shiny?
+
+The UI is what all app users see and interact with, whereas the server is what does all the work behind the scenes.
+
+::: panel-tabset
+### UI
+
+```{.r code-line-numbers="|4|7-8|11"}
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Old Faithful"),                                     # <1>
+  sidebarLayout(
+    sidebarPanel = sidebarPanel(
+      sliderInput(inputId = "bins", label = "Number of bins:",    # <2>
+            min = 1, max = 50, value = 30)                        # <2>
+    ),
+    mainPanel = mainPanel(
+      plotOutput("distPlot")                                      # <3>
+    )
+  )
+)
+```
+1. Define title of app
+2. Add an input widget
+3. Add the output product
+
+### Server
+
+```{.r code-line-numbers="|3|6|9"}
+server <- function(input, output, session) {
+  
+     output$distPlot <- renderPlot({                                            # <4>
+      # generate bins based on input$bins from ui.R
+      wait <- faithful[, 2] 
+      bins <- seq(min(wait), max(wait), length.out = input$bins + 1)            # <5>
+      
+      # draw the histogram with the specified number of bins
+      hist(wait, breaks = bins, col = 'darkgray', border = 'white')             # <6>
+   })
+     
+}
+```
+4. Store output product
+5. Define variable influenced by input
+6. Create resulting plot
+:::
+
+
+## How Shiny?
+```{r}
+#| context: setup
+#| echo: false
+
+library(shiny)
+
+sliderInput(inputId = "bins", label = "Number of bins:",    
+            min = 1, max = 50, value = 30)                        
+
+plotOutput("distPlot")                                      
+
+```
+
+```{r}
+#| context: server
+#| echo: false
+
+output$distPlot <- renderPlot({                                            
+  # generate bins based on input$bins from ui.R
+  wait <- faithful[, 2] 
+  bins <- seq(min(wait), max(wait), length.out = input$bins + 1)            
+  
+  # draw the histogram with the specified number of bins
+  hist(wait, breaks = bins, col = 'darkgray', border = 'white')             
+})
+```
+
+
+
+## How Shiny?
+
+The third additional component of Shiny that differs from other available interactive widgets in R is **reactive expressions**.
+
+<br>
+
+Reactive objects automatically update the state of the app to produce changes to [outputs](https://mastering-shiny.org/basic-ui.html#outputs) that reflect changes to [inputs](https://shiny.posit.co/r/gallery/widgets/widget-gallery/).
+
+<br>
+
+<center>[Shiny gallery](https://shiny.posit.co/r/gallery/)</center>
+
+
+## Sharing Shiny apps
+
+TBD
+
+
+## Additional resources
+
+Include links for Mastering Shiny, other blogs/videos, extensions, and examples 
+
+
+## Practice
+
+Let's do some hands-on examples to practice building and sharing Shiny apps from the ground up
