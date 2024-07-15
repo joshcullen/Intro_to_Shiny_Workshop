@@ -36,7 +36,7 @@ July 25, 2024
 
 ## What is Shiny?
 
-[**Shiny**]{style="color: #0044ffa3"} is software for web app development that mitigates the need for knowledge of typical programming languages (e.g., JavaScript, HTML, and CSS).
+[**Shiny**]{style="color: #0044ffa3"} is software for web app development that mitigates the need for knowledge of typical programming languages (e.g., JavaScript, HTML, and CSS) for web development.
 
 ::: incremental
 - All you need to know is how to code in [R](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html) (or now [Python](https://shiny.posit.co/py/)!) to develop and deploy a web application
@@ -51,12 +51,46 @@ July 25, 2024
 
 There are a wide number of reasons why [**you**]{.underline} may be interested in creating a web app with Shiny:
 
-::: incremental
+::::: columns
+:::: {.column width="50%"}
+:::{ .fragment fragment-index=1}
 1. Data exploration
+:::
+
+::: {.fragment fragment-index=2}
 2. Data collection
+:::
+
+::: {.fragment fragment-index=3}
 3. Sharing results
+:::
+
+::: {.fragment fragment-index=4}
 4. Decision support
 :::
+::::
+
+:::: {.column width="50%"}
+:::: {.r-stack}
+::: {.fragment fragment-index=1}
+![](https://joshcullen.github.io/bayesmove/articles/Shiny-Fig3.png)
+:::
+
+::: {.fragment fragment-index=2}
+![](images/expert_elicitation_app.png)
+:::
+
+::: {.fragment fragment-index=3}
+![](images/green_turtle_app.png)
+:::
+
+::: {.fragment fragment-index=4}
+![](images/ecocast_app.png)
+:::
+::::
+::::
+
+:::::
 
 
 ## Why Shiny?
@@ -168,27 +202,54 @@ output$distPlot <- renderPlot({
 
 ## How Shiny?
 
-The third additional component of Shiny that differs from other available interactive widgets in R is **reactive expressions**.
+The third additional component of Shiny that differs from interactive widgets in R is **reactive expressions**.
 
-<br>
+::: {.fragment .fade-in}
+- Reactive objects automatically update the state of the app to produce changes to [outputs](https://mastering-shiny.org/basic-ui.html#outputs) that reflect changes to [inputs](https://shiny.posit.co/r/gallery/widgets/widget-gallery/)
+:::
 
-Reactive objects automatically update the state of the app to produce changes to [outputs](https://mastering-shiny.org/basic-ui.html#outputs) that reflect changes to [inputs](https://shiny.posit.co/r/gallery/widgets/widget-gallery/).
+::: {.fragment .fade-up}
+<center>![Photo credit: [`reactlog`](https://rstudio.github.io/reactlog/)](http://rstudio.github.io/reactlog/readme-images/pythagoras.gif)</center>
+:::
 
-<br>
 
-<center>[Shiny gallery](https://shiny.posit.co/r/gallery/)</center>
+
 
 
 ## Sharing Shiny apps
 
-TBD
+Apps can be [shared](https://shiny.posit.co/r/getstarted/shiny-basics/lesson7/) using:
+
+- a set of files (e.g., app.R, data.csv) run locally in R
+- deployed on an online server (e.g., shinyapps.io has 'Free' plan)
+
+::: {.fragment .fade-in}
+::: {.fragment .semi-fade-out}
+- deployed as a static file online (e.g., GitHub pages using [`shinylive`](https://posit-dev.github.io/r-shinylive/))
+:::
+:::
+
+::: {.fragment}
+If deployed online, apps can even be embedded on separate websites whether they were made using R or not
+
+[Green turtle example](https://joshcullen.github.io/Research/GreenTurtleSDM)
+:::
 
 
 ## Additional resources
 
 Include links for Mastering Shiny, other blogs/videos, extensions, and examples 
 
+- [Mastering Shiny](https://mastering-shiny.org) by Hadley Wickham
+- [Shiny gallery](https://shiny.posit.co/r/gallery/)
+- [Shiny Quarto docs](https://quarto.org/docs/interactive/shiny/)
+- [Deploying to shinyapps.io](https://shiny.posit.co/r/articles/share/shinyapps/)
+- [R Shiny Webinar Series via EFI](https://ecoforecast.org/workshops/r-shiny-seminar-series/)
+- [Demo for creating app via shinylive](https://quarto.thecoatlessprofessor.com/r-shinylive-demo/)
 
-## Practice
+
+# `r fontawesome::fa("laptop-code", "black")` Your turn {background-color="#ff9900aa" transition="slide-in"}
 
 Let's do some hands-on examples to practice building and sharing Shiny apps from the ground up
+
+<center>![](https://media1.giphy.com/media/WZ4M8M2VbauEo/giphy.webp?cid=ecf05e47r0wlxdp5mpsybyy20zaagxvg59k5w17j1dpzzqpr&ep=v1_gifs_search&rid=giphy.webp&ct=g){width=80%}</center>
