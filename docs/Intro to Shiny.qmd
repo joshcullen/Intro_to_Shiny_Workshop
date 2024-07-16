@@ -34,7 +34,7 @@ July 25, 2024
 :::
 
 
-## What is Shiny?
+## What is Shiny? {.text-lime-cyan}
 
 [**Shiny**]{style="color: #0044ffa3"} is software for web app development that mitigates the need for knowledge of typical programming languages (e.g., JavaScript, HTML, and CSS) for web development.
 
@@ -47,7 +47,7 @@ July 25, 2024
 
 :::
 
-## Why Shiny?
+## Why Shiny? {.text-lime-cyan}
 
 There are a wide number of reasons why [**you**]{.underline} may be interested in creating a web app with Shiny:
 
@@ -93,7 +93,7 @@ There are a wide number of reasons why [**you**]{.underline} may be interested i
 :::::
 
 
-## Why Shiny?
+## Why Shiny? {.text-lime-cyan}
 
 Additionally, web apps are a good solution for many projects since they are:
 
@@ -104,7 +104,7 @@ Additionally, web apps are a good solution for many projects since they are:
 :::
 
 
-## How Shiny?
+## How Shiny? {.text-lime-cyan}
 
 Like all web apps, Shiny can be broken down into its two major components:
 
@@ -116,12 +116,12 @@ Like all web apps, Shiny can be broken down into its two major components:
 :::
 
 ::: {.column width="50%"}
-![](https://psyr.djnavarro.net/img_shiny/architecture.png)
+![[Photo credit: Danielle Navarro](https://psyr.djnavarro.net/shiny)](https://psyr.djnavarro.net/img_shiny/architecture.png)
 :::
 :::
 
 
-## How Shiny?
+## How Shiny? {.text-lime-cyan}
 
 The UI is what all app users see and interact with, whereas the server is what does all the work behind the scenes.
 
@@ -170,7 +170,7 @@ server <- function(input, output, session) {
 :::
 
 
-## How Shiny?
+## How Shiny? {background-color="#00aa6699"}
 ```{r}
 #| context: setup
 #| echo: false
@@ -200,7 +200,7 @@ output$distPlot <- renderPlot({
 
 
 
-## How Shiny?
+## How Shiny? {.text-lime-cyan}
 
 The third additional component of Shiny that differs from interactive widgets in R is **reactive expressions**.
 
@@ -216,7 +216,7 @@ The third additional component of Shiny that differs from interactive widgets in
 
 
 
-## Sharing Shiny apps
+## Sharing Shiny apps {.text-lime-cyan}
 
 Apps can be [shared](https://shiny.posit.co/r/getstarted/shiny-basics/lesson7/) using:
 
@@ -236,7 +236,7 @@ If deployed online, apps can even be embedded on separate websites whether they 
 :::
 
 
-## Additional resources
+## Additional resources {.text-lime-cyan}
 
 Include links for Mastering Shiny, other blogs/videos, extensions, and examples 
 

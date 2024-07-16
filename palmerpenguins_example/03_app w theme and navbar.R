@@ -1,5 +1,7 @@
 
-# Shiny app w multiple pages and nice UI theme
+
+## Shiny app w multiple pages and nice UI theme
+## Created 2024-07-08 by Josh Cullen (josh.cullen@noaa.gov)
 
 library(palmerpenguins)
 library(ggplot2)

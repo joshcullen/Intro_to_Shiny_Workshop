@@ -1,8 +1,7 @@
 
 
-#############################################
-### Learn to use Leaflet outside of Shiny ###
-#############################################
+## Learn to use {leaflet} outside of Shiny
+## Created 2022-03-23 by Josh Cullen (josh.cullen@noaa.gov)
 
 ### For more detailed information and examples, visit https://rstudio.github.io/leaflet/
 

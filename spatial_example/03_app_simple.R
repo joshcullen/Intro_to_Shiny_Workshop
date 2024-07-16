@@ -1,9 +1,7 @@
 
 
-## Barebones Shiny web application to demonstrate Leaflet maps ##
-
 ## Only plots Leaflet map; no inputs or reactivity
-## Created 2022-03-23 by Josh Cullen (joshcullen10@gmail.com)
+## Created 2022-03-23 by Josh Cullen (josh.cullen@noaa.gov)
 
 
 library(tidyverse)

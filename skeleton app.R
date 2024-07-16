@@ -5,7 +5,7 @@ library(shiny)
 
 # Define user interface (UI)
 ui <- fluidPage(
-  "My app",
+  titlePanel("My app"),
   sidebarLayout(
     sidebarPanel = sidebarPanel("Inputs"),
     mainPanel = mainPanel("Main content area for outputs")

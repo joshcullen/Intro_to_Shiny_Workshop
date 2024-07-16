@@ -1,8 +1,7 @@
 
-#################################################################
-### Download environmental raster and create simulated tracks ###
-#################################################################
 
+## Download SST and simulate tracks of animal movement
+## Created 2022-03-23 by Josh Cullen (josh.cullen@noaa.gov)
 
 library(tidyverse)
 library(sf)

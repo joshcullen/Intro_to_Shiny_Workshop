@@ -1,5 +1,7 @@
 
-# Simple Shiny app example (taken from https://rstudio.github.io/bslib/articles/dashboards/index.html#hello-dashboards)
+
+## Simple Shiny app example (taken from https://rstudio.github.io/bslib/articles/dashboards/index.html#hello-dashboards)
+## Created 2024-07-08 by Josh Cullen (josh.cullen@noaa.gov)
 
 library(palmerpenguins)
 library(ggplot2)

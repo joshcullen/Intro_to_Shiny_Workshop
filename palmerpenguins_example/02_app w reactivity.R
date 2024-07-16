@@ -1,5 +1,7 @@
 
-# Shiny app with multiple components (i.e., plot, table, text)
+
+## Shiny app with multiple components (i.e., plot, table, text)
+## Created 2024-07-08 by Josh Cullen (josh.cullen@noaa.gov)
 
 library(palmerpenguins)
 library(ggplot2)

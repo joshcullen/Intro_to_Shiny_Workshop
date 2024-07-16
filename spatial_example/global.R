@@ -1,5 +1,7 @@
 
-# Example for running multi-file Shiny app
+
+## Example for running multi-file Shiny app
+## Created 2024-07-08 by Josh Cullen (josh.cullen@noaa.gov)
 
 library(tidyverse)
 library(terra)
