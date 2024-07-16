@@ -3,6 +3,8 @@
 ## Plots Leaflet map w/ inputs and reactivity
 ## Created 2022-03-23 by Josh Cullen (josh.cullen@noaa.gov)
 
+## Just press "Cmd/Ctrl + Shift + Return" to run file w/ relative paths of app directory
+
 library(tidyverse)
 library(terra)
 library(sf)
@@ -30,9 +32,8 @@ tracks.sf2 <- tracks.sf %>%
 # Monthly SST (2021)
 sst <- read.csv("../data/Monthly_SST_2021.csv")
 sst.rast <- sst %>%
-  group_split(month) %>%
+  split(~month) %>%
   purrr::map(., ~rast(.[,c('x','y','sst')], type = "xyz", crs = "EPSG:4326")) %>%
-  set_names(month.abb) %>%
   rast()
 
 # Offshore wind leases
@@ -78,8 +79,8 @@ ui <- fluidPage(title = "Animal Movement, Offshore Wind Development, and SST",
                                           multiple = TRUE),
                               selectInput(inputId = "raster",
                                           label = "Select month of SST",
-                                          choices = month.name,
-                                          selected = month.name[1])
+                                          choices = month.abb,
+                                          selected = month.abb[1])
 
                 )  #close absolutePanel
 
@@ -106,7 +107,7 @@ server <- function(input, output, session) {
   })
 
   sst.out <- reactive({
-    sst.rast[[which(month.name == input$raster)]]
+    sst.rast[[which(names(sst.rast) == input$raster)]]
   })
 
 

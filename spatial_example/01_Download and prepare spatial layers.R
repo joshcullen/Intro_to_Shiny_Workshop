@@ -5,7 +5,7 @@
 
 library(tidyverse)
 library(sf)
-library(raster)
+library(terra)
 library(rerddapXtracto)
 library(cmocean)
 library(circular)
@@ -20,8 +20,11 @@ source('spatial_example/utils.R')
 xpos <- c(-77, -68)
 ypos <- c(35, 45)
 tpos <- c("2021-01-16", "2021-12-16")
-sstInfo <- rerddap::info('jplMURSST41mday')  #takes x min to download
+sstInfo <- rerddap::info('jplMURSST41mday')
+
+tic()
 sst.bbox <- rxtracto_3D(sstInfo, parameter = 'sst', xcoord = xpos, ycoord = ypos, tcoord = tpos)
+toc()  #took 1 min to run
 
 
 
@@ -44,24 +47,25 @@ ggplot() +
   facet_wrap(~ month)
 
 
-# Convert to RasterBrick to reduce raster resolution
+# Convert to stacked SpatRaster and coarsen resolution
 sst.rast2 <- sst.rast %>%
   group_split(month) %>%
-  purrr::map(., ~rasterFromXYZ(.[,c('x','y','sst')], digits = 2, crs = 4326)) %>%
-  raster::brick()
+  purrr::map(., ~rast(.[,c('x','y','sst')], type = "xyz", digits = 2, crs = "EPSG:4326")) %>%
+  set_names(month.abb) %>%
+  rast()
 
-sst.coarse <- raster::aggregate(sst.rast2, fact = 4)  #convert to 4 km res
+sst.coarse <- aggregate(sst.rast2, fact = 4)  #convert to 4 km res
 
 
 plot(sst.rast2)
 plot(sst.coarse)
 
 
-# Convert aggregated RasterBrick to data.frame for ggplot and export
+# Convert aggregated SpatRaster to data.frame for ggplot and export
 sst.coarse.df <- sst.coarse %>%
   as.data.frame(xy = TRUE) %>%
-  pivot_longer(cols = -c('x','y'), names_to = 'month', values_to = 'sst') %>%
-  mutate(month = str_replace(month, "sst.", ""))
+  pivot_longer(cols = -c('x','y'), names_to = 'month', values_to = 'sst') |> 
+  mutate(month = factor(month, levels = month.abb))
 
 # Plot coarse monthly SST
 ggplot() +
@@ -89,7 +93,7 @@ wind <- st_read("data/BOEM-Renewable-Energy-Shapefiles_1/BOEMWindLeases_OutlineP
 # plot over SST
 ggplot() +
   geom_raster(data = sst.coarse.df %>%
-                filter(month == 8), aes(x, y, fill = sst)) +
+                filter(month == "Aug"), aes(x, y, fill = sst)) +
   scale_fill_cmocean() +
   geom_sf(data = wind) +
   theme_bw() +
@@ -160,7 +164,7 @@ tracks.df2 <- tracks.df %>%
 # plot simulated tracks over SST and wind lease areas
 ggplot() +
   geom_raster(data = sst.coarse.df %>%
-                filter(month == 8), aes(x, y, fill = sst)) +
+                filter(month == "Aug"), aes(x, y, fill = sst)) +
   scale_fill_cmocean() +
   geom_sf(data = wind) +
   geom_path(data = tracks.df2, aes(x, y, group = id, color = id)) +

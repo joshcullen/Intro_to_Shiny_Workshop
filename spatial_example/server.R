@@ -15,7 +15,7 @@ server <- function(input, output, session) {
   })
   
   sst.out <- reactive({
-    sst.rast[[which(month.name == input$raster)]]
+    sst.rast[[which(names(sst.rast) == input$raster)]]
   })
   
   

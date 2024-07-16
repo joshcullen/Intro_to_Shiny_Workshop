@@ -241,6 +241,7 @@ If deployed online, apps can even be embedded on separate websites whether they 
 Include links for Mastering Shiny, other blogs/videos, extensions, and examples 
 
 - [Mastering Shiny](https://mastering-shiny.org) by Hadley Wickham
+- [ShinyUiEditor](https://rstudio.github.io/shinyuieditor/) for creating UIs via a drag-and-drop template
 - [Shiny gallery](https://shiny.posit.co/r/gallery/)
 - [Shiny Quarto docs](https://quarto.org/docs/interactive/shiny/)
 - [Deploying to shinyapps.io](https://shiny.posit.co/r/articles/share/shinyapps/)

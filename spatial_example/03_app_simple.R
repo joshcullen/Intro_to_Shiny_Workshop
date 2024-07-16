@@ -31,9 +31,8 @@ tracks.sf2 <- tracks.sf %>%
 # Monthly SST (2021)
 sst <- read.csv("data/Monthly_SST_2021.csv")
 sst.rast <- sst %>%
-  group_split(month) %>%
+  split(~month) %>%
   purrr::map(., ~rast(.[,c('x','y','sst')], type = "xyz", crs = "EPSG:4326")) %>%
-  set_names(month.abb) %>%
   rast()
 
 # Offshore wind leases
