@@ -120,12 +120,15 @@ server <- function(input, output, session) {
     ## Static Leaflet basemap and widgets
     leaflet() %>%
       setView(lng = -73, lat = 41.5, zoom = 6) %>%
-      addProviderTiles(provider = providers$Esri.OceanBasemap, group = "Ocean Basemap") %>%
-      addProviderTiles(provider = providers$Esri.WorldImagery, group = "World Imagery") %>%
-      addProviderTiles(provider = providers$OpenStreetMap, group = "Open Street Map") %>%
+      addProviderTiles(provider = providers$Esri.OceanBasemap, group = "Ocean Basemap",
+                       options = providerTileOptions(zIndex = -10)) %>%
+      addProviderTiles(provider = providers$Esri.WorldImagery, group = "World Imagery",
+                       options = providerTileOptions(zIndex = -10)) %>%
+      addProviderTiles(provider = providers$OpenStreetMap, group = "Open Street Map",
+                       options = providerTileOptions(zIndex = -10)) %>%
       addLayersControl(baseGroups = c("Ocean Basemap", "World Imagery", "Open Street Map"),
                        overlayGroups = c("SST", "Offshore Wind Leases", "Tracks"),
-                       options = layersControlOptions(collapsed = TRUE, autoZIndex = TRUE),
+                       options = layersControlOptions(collapsed = TRUE, autoZIndex = FALSE),
                        position = "bottomleft") %>%
       addScaleBar(position = "bottomright") %>%
       addMeasure(position = "topleft",

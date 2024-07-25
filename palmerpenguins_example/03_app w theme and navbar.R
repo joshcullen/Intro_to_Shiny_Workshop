@@ -24,7 +24,7 @@ theme_set(theme_bw(base_size = 16))
 ui <- page_navbar(
   title = "Penguins dashboard",
   theme = bs_theme(version = 5,
-                   preset = "vapor",  #one of many theme presets
+                   bootswatch = "vapor",  #one of many theme presets
                    base_font = font_google("Roboto")),
   
   # First page

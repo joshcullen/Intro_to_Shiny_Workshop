@@ -251,12 +251,15 @@ rast.pal2 <- colorNumeric('magma',
 # Add all layers w/ ability to hide, as well as raster querying and mouse coordinates
 
 leaflet() %>%
-  addProviderTiles(provider = providers$Esri.OceanBasemap, group = "Ocean Basemap") %>%
-  addProviderTiles(provider = providers$Esri.WorldImagery, group = "World Imagery") %>%
-  addProviderTiles(provider = providers$OpenStreetMap, group = "Open Street Map") %>%
+  addProviderTiles(provider = providers$Esri.OceanBasemap, group = "Ocean Basemap",
+                   options = providerTileOptions(zIndex = -10)) %>%
+  addProviderTiles(provider = providers$Esri.WorldImagery, group = "World Imagery",
+                   options = providerTileOptions(zIndex = -10)) %>%
+  addProviderTiles(provider = providers$OpenStreetMap, group = "Open Street Map",
+                   options = providerTileOptions(zIndex = -10)) %>%
   addLayersControl(baseGroups = c("Ocean Basemap", "World Imagery", "Open Street Map"),
                    overlayGroups = c("Feb SST", "Aug SST", "Offshore Wind Leases", "Tracks"),
-                   options = layersControlOptions(collapsed = TRUE, autoZIndex = F),
+                   options = layersControlOptions(collapsed = TRUE, autoZIndex = FALSE),
                    position = "bottomleft") %>%
   addRasterImage(x = sst.rast$Feb,
                  colors = rast.pal2,
